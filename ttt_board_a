@@ -36,18 +36,15 @@ markBoard() {
     idx=$(( $bpos - 1 ))
     # if $marker != "X" || $marker != "O" echo "invalid marker"
     # if $bpos > 9 || < 1 echo "invalid position"
-    #curr=${reference[$idx]}
-    printf "WE SHOULD PRINT HERE %s\n" $curr
-    # if [ $reference[$idx] != "X" ] || [ $reference[$idx] != "O" ];
-    if [ ${reference[$idx]} = "_" ]; then
+
+    if [ ${reference[$idx]} == "_" ]; then
       reference[$idx]=$marker
       # $reference[$idx]=$marker 为什么不可以
-      printf "board position marked"
+      #printf "board position marked"
       return 0
-
       #echo $? #到底返回多少，怎么返回待商榷
     else  
-      printf "cannot mark"
+      #printf "cannot mark"
       return 1
       #echo $?
     fi
@@ -65,20 +62,27 @@ markBoard() {
 #
 hasWon() {
     ### your code here
-    # marker=$1
-    # reference=$2
-    # if [ $reference[0] == $marker ] && [ $reference[1] == $marker ] && [ $reference[2] == $marker ] 
-    # || [ $reference[3] == $marker ] && [ $reference[4] == $marker ] && [ $reference[5] == $marker ] 
+    marker=$1
+    declare -n reference=$2
+    #printf "reference[0] %s\n" ${reference[0]} 
+    con1=[ ${reference[0]} == $marker ] && [ ${reference[1]} == $marker ] && [ ${reference[2]} == $marker ]
+    con2=[ ${reference[3]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[5]} == $marker ]
+    if [ con1 ] || [ con2 ]
+    # if [ ${reference[0]} == $marker ] && [ ${reference[1]} == $marker ] && [ ${reference[2]} == $marker ] 
+    # || [ ${reference[3]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[5]} == $marker ]; 
     # || [ $reference[6] == $marker ] && [ $reference[7] == $marker ] && [ $reference[8] == $marker ] 
     # || [ $reference[0] == $marker ] && [ $reference[3] == $marker ] && [ $reference[6] == $marker ] 
     # || [ $reference[1] == $marker ] && [ $reference[4] == $marker ] && [ $reference[7] == $marker ] 
     # || [ $reference[2] == $marker ] && [ $reference[5] == $marker ] && [ $reference[8] == $marker ] 
     # || [ $reference[0] == $marker ] && [ $reference[4] == $marker ] && [ $reference[8] == $marker ] 
-    # || [ $reference[2] == $marker ] && [ $reference[4] == $marker ] && [ $reference[6] == $marker ]; then
-    #   echo $?
-    # else
-    #   echo $?
-    # fi
+    # || [ $reference[2] == $marker ] && [ $reference[4] == $marker ] && [ $reference[6] == $marker ]; 
+    then
+      return 0
+      #echo $?
+    else
+      return 1
+      #echo $?
+    fi
 }
 
 ##
