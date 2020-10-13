@@ -64,24 +64,34 @@ hasWon() {
     ### your code here
     marker=$1
     declare -n reference=$2
-    #printf "reference[0] %s\n" ${reference[0]} 
-    con1=[ ${reference[0]} == $marker ] && [ ${reference[1]} == $marker ] && [ ${reference[2]} == $marker ]
-    con2=[ ${reference[3]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[5]} == $marker ]
-    if [ con1 ] || [ con2 ]
-    # if [ ${reference[0]} == $marker ] && [ ${reference[1]} == $marker ] && [ ${reference[2]} == $marker ] 
-    # || [ ${reference[3]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[5]} == $marker ]; 
-    # || [ $reference[6] == $marker ] && [ $reference[7] == $marker ] && [ $reference[8] == $marker ] 
-    # || [ $reference[0] == $marker ] && [ $reference[3] == $marker ] && [ $reference[6] == $marker ] 
-    # || [ $reference[1] == $marker ] && [ $reference[4] == $marker ] && [ $reference[7] == $marker ] 
-    # || [ $reference[2] == $marker ] && [ $reference[5] == $marker ] && [ $reference[8] == $marker ] 
-    # || [ $reference[0] == $marker ] && [ $reference[4] == $marker ] && [ $reference[8] == $marker ] 
-    # || [ $reference[2] == $marker ] && [ $reference[4] == $marker ] && [ $reference[6] == $marker ]; 
-    then
+
+    if [ ${reference[0]} == $marker ] && [ ${reference[1]} == $marker ] && [ ${reference[2]} == $marker ]; then
       return 0
-      #echo $?
+      echo success
+    elif [ ${reference[3]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[5]} == $marker ]; then
+      return 0
+      echo success
+    elif [ ${reference[6]} == $marker ] && [ ${reference[7]} == $marker ] && [ ${reference[8]} == $marker ]; then
+      return 0
+      echo success
+    elif [ ${reference[0]} == $marker ] && [ ${reference[3]} == $marker ] && [ ${reference[6]} == $marker ]; then
+      return 0
+      echo success
+    elif [ ${reference[1]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[7]} == $marker ]; then
+      return 0
+      echo success
+    elif [ ${reference[2]} == $marker ] && [ ${reference[5]} == $marker ] && [ ${reference[8]} == $marker ]; then
+      return 0
+      echo success
+    elif [ ${reference[0]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[8]} == $marker ]; then
+      return 0
+      echo success
+    elif [ ${reference[2]} == $marker ] && [ ${reference[4]} == $marker ] && [ ${reference[6]} == $marker ]; then
+      return 0
+      echo success   
     else
       return 1
-      #echo $?
+      echo fail
     fi
 }
 
@@ -92,5 +102,24 @@ hasWon() {
 #
 displayBoard() {
     ### your code here
-    reference=$1
+    declare -n reference=$1
+    boundry="-------------"
+    
+    if [ ${reference[0]} == "_" ]; then pos0="0"; else pos0="${reference[0]}"; fi
+    if [ ${reference[1]} == "_" ]; then pos1="1"; else pos1="${reference[1]}"; fi
+    if [ ${reference[2]} == "_" ]; then pos2="2"; else pos2="${reference[2]}"; fi
+    if [ ${reference[3]} == "_" ]; then pos3="3"; else pos3="${reference[3]}"; fi
+    if [ ${reference[4]} == "_" ]; then pos4="4"; else pos4="${reference[4]}"; fi
+    if [ ${reference[5]} == "_" ]; then pos5="5"; else pos5="${reference[5]}"; fi
+    if [ ${reference[6]} == "_" ]; then pos6="6"; else pos6="${reference[6]}"; fi
+    if [ ${reference[7]} == "_" ]; then pos7="7"; else pos7="${reference[7]}"; fi
+    if [ ${reference[8]} == "_" ]; then pos8="8"; else pos8="${reference[8]}"; fi
+    
+    printf "%s\n" $boundry
+    echo "| $pos0 | $pos1 | $pos2"
+    printf "%s\n" $boundry
+    echo "| $pos3 | $pos4 | $pos5"
+    printf "%s\n" $boundry
+    echo "| $pos6 | $pos7 | $pos8"
+    printf "%s\n" $boundry
 }

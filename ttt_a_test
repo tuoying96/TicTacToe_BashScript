@@ -38,21 +38,26 @@ test_X_win() {
 	sol=( X _ _ _ _ _ _ _ O )
 	assertArrayEqual tttBoard sol
 
-	# X first move to position 9
+	# X second move to position 9
 	markBoard X 9 tttBoard 
 	#should be failed, beacuse this positionn has already be O
 	sol=( X _ _ _ _ _ _ _ O )
 	assertArrayEqual tttBoard sol
 
     ### Additional tests here  for X winning game
-	# X first move to position 2
+	# X second move to position 2
 	markBoard X 2 tttBoard
 	sol=( X X _ _ _ _ _ _ O )
 	assertArrayEqual tttBoard sol
 
-	# X first move to position 3
+	# O second move to position 5
+	markBoard O 5 tttBoard
+	sol=( X X _ _ O _ _ _ O )
+	assertArrayEqual tttBoard sol
+
+	# X third move to position 3
 	markBoard X 3 tttBoard
-	sol=( X X X _ _ _ _ _ O )
+	sol=( X X X _ O _ _ _ O )
 	assertArrayEqual tttBoard sol
 
     # X has won
@@ -73,17 +78,100 @@ test_O_win() {
     ### -- only happens if X makes a mistake
     
     ### remove this line
-    fail
+    #fail
+	declare -a tttBoard2			# the ttt board
+	
+	# initialize the board
+	initBoard tttBoard2
+	sol=( _ _ _ _ _ _ _ _ _ )
+	assertArrayEqual tttBoard2 sol
+	
+	# X first move to position 1
+	markBoard X 1 tttBoard2
+	sol=( X _ _ _ _ _ _ _ _ )
+	assertArrayEqual tttBoard2 sol
+
+	# O first move to position 9
+	markBoard O 9 tttBoard2
+	sol=( X _ _ _ _ _ _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+    ### Additional tests here  for X winning game
+	# X second move to position 5
+	markBoard X 5 tttBoard2
+	sol=( X _ _ _ X _ _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+	# O second move to position 5
+	markBoard O 6 tttBoard2
+	sol=( X _ _ _ X O _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+	# X third move to position 3
+	markBoard X 2 tttBoard2
+	sol=( X X _ _ X O _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+	# O third move to position 3
+	markBoard O 3 tttBoard2
+	sol=( X X O _ X O _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+    # X won
+	hasWon X tttBoard2
+	assertStatusFailure
+
+    # O has won
+	hasWon O tttBoard2
+	assertStatusSuccess
 }
 
 ##
 #  Play a game of tic-tac-toe where players draw.
 #
 test_draw() {
+
+	declare -a tttBoard2			# the ttt board
+	
+	# initialize the board
+	initBoard tttBoard2
+	sol=( _ _ _ _ _ _ _ _ _ )
+	assertArrayEqual tttBoard2 sol
+	
+	# X first move to position 1
+	markBoard X 1 tttBoard2
+	sol=( X _ _ _ _ _ _ _ _ )
+	assertArrayEqual tttBoard2 sol
+
+	# O first move to position 9
+	markBoard O 9 tttBoard2
+	sol=( X _ _ _ _ _ _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+    ### Additional tests here  for X winning game
+	# X second move to position 5
+	markBoard X 5 tttBoard2
+	sol=( X _ _ _ X _ _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+	# O second move to position 5
+	markBoard O 6 tttBoard2
+	sol=( X _ _ _ X O _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+	# X third move to position 3
+	markBoard X 2 tttBoard2
+	sol=( X X _ _ X O _ _ O )
+	assertArrayEqual tttBoard2 sol
+
+	# O third move to position 3
+	markBoard O 3 tttBoard2
+	sol=( X X O _ X O _ _ O )
+	assertArrayEqual tttBoard2 sol
     ### tests here  for drawn game
-    
+    displayBoard tttBoard2
     ### remove this line
-    fail
+    #fail
 }
 
 # run unit tests for X win, O win, and draw
