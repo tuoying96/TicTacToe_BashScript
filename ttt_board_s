@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# @file ttt_board_s
+#
+# Defines board and functions for tic-tac-toe (naughts and crosses)
+# This implementation uses a string to represent the board
+#
+# @date Sept 1, 2020
+# @author philip gust
+#
+
+##
+#  Initialize empty board.
+#
+#  @return 0 and outputs the empty board to stdout
+#
+initBoard() {
+    ### your code here
+}
+
+##
+#  Mark the board position with the marker of a player (X or O).
+#  
+#  @param marker the marker for a player (X or O)
+#  @param boardPos the row major position on the board (1-9)
+#  @param board the board
+#  @return 0 and outputs new board to stdout if board position 
+#    marked, 1 and outputs original board to stdout if invalid 
+#    marker or position
+#
+markBoard() {
+    ### your code here
+}
+
+##
+#  Determines whether given marker has won. Only if
+#  marker has three columns in row or three rows in
+#  column, or all in one of the two diagonals.
+#
+#  @param marker the X or O marker
+#  @param board the board
+#  @return 0 if marker has won, 1 otherwise.
+#
+hasWon() {
+    ### your code here
+}
+
+##
+#  Display the board.
+#
+#  @param board the board
+#
+displayBoard() {
+    ### your code here
+}

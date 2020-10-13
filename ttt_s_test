@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# @file ttt_s_test
+#
+# Tic-Tac-Toe (Naughts and Crosses)
+# Tests the string representation of the board
+#
+# Markers: X: x marker, O: o marker, _: no marker
+#
+# @date Sept 1, 2020
+# @author philip gust
+#
+
+# read ttt board definitions
+dir=$(dirname "$0")
+source "$dir/ttt_board_s"
+source "$dir/unit_test"
+
+
+##
+#  Play a game of tic-tac-toe where player X wins.
+#
+test_X_win() {
+	# initialize the board
+	local tttBoard=$(initBoard)
+	assertStringEqual "$tttBoard" "_________"
+	
+	# X first move to position 1
+	tttBoard="$(markBoard X 1 $tttBoard)"
+	assertStringEqual "$tttBoard" "X________"
+
+	# O first move to position 9
+	tttBoard="$(markBoard O 9 $tttBoard)"
+	assertStringEqual "$tttBoard" "X_______O"
+
+    ### Additional tests here  for X winning game
+
+    # X has won
+	hasWon X "$tttBoard"
+	assertStatusSuccess
+
+    # O has not won
+	hasWon O "$tttBoard"
+	assertStatusFailure
+}
+
+
+##
+#  Play a game of tic-tac-toe where player O wins.
+#
+test_O_win() {
+    ### tests here  for O winning game
+    
+    ### remove this line
+    fail
+}
+
+##
+#  Play a game of tic-tac-toe where players draw.
+#
+test_draw() {
+    ### tests here  for drawn game
+    
+    ### remove this line
+    fail
+}
+
+# run unit tests for X win, O win, and draw
+runUnitTest test_X_win
+runUnitTest test_O_win
+runUnitTest test_draw
+
+# show unit test summary
+unitTestSummary
