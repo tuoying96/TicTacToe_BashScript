@@ -29,7 +29,16 @@ initBoard() {
 #
 markBoard() {
     ### your code here
-    
+    marker=$1
+    bpos=$2
+    reference=$3
+    if [ ${reference[$bpos]} != "_" ]
+    then
+        echo 0
+    else
+        echo 1
+    fi
+
 }
 
 ##
@@ -43,6 +52,8 @@ markBoard() {
 #
 hasWon() {
     ### your code here
+    marker=$1
+    reference=$2
 }
 
 ##
@@ -52,4 +63,5 @@ hasWon() {
 #
 displayBoard() {
     ### your code here
+    reference=$1
 }
