@@ -16,7 +16,8 @@
 #
 initBoard() {
     ### your code here
-    tttBoard=( _ _ _ _ _ _ _ _ _ )
+    declare -n board=$1
+    board=( _ _ _ _ _ _ _ _ _ )
 }
 
 ##
@@ -31,19 +32,24 @@ markBoard() {
     ### your code here
     marker=$1
     bpos=$2
-    reference=$3
+    declare -n reference=$3
     idx=$(( $bpos - 1 ))
     # if $marker != "X" || $marker != "O" echo "invalid marker"
     # if $bpos > 9 || < 1 echo "invalid position"
-    if [ {$reference[$idx]} != "_" ];
-    then
-        tttBoard[$idx]=$marker
-        # $reference[$idx]=$marker 为什么不可以
-        printf "board position marked"
-        echo 0
+    #curr=${reference[$idx]}
+    printf "WE SHOULD PRINT HERE %s\n" $curr
+    # if [ $reference[$idx] != "X" ] || [ $reference[$idx] != "O" ];
+    if [ ${reference[$idx]} = "_" ]; then
+      reference[$idx]=$marker
+      # $reference[$idx]=$marker 为什么不可以
+      printf "board position marked"
+      return 0
+
+      #echo $? #到底返回多少，怎么返回待商榷
     else  
-        printf "cannot mark"
-        echo 1
+      printf "cannot mark"
+      return 1
+      #echo $?
     fi
 
 }
@@ -59,8 +65,20 @@ markBoard() {
 #
 hasWon() {
     ### your code here
-    marker=$1
-    reference=$2
+    # marker=$1
+    # reference=$2
+    # if [ $reference[0] == $marker ] && [ $reference[1] == $marker ] && [ $reference[2] == $marker ] 
+    # || [ $reference[3] == $marker ] && [ $reference[4] == $marker ] && [ $reference[5] == $marker ] 
+    # || [ $reference[6] == $marker ] && [ $reference[7] == $marker ] && [ $reference[8] == $marker ] 
+    # || [ $reference[0] == $marker ] && [ $reference[3] == $marker ] && [ $reference[6] == $marker ] 
+    # || [ $reference[1] == $marker ] && [ $reference[4] == $marker ] && [ $reference[7] == $marker ] 
+    # || [ $reference[2] == $marker ] && [ $reference[5] == $marker ] && [ $reference[8] == $marker ] 
+    # || [ $reference[0] == $marker ] && [ $reference[4] == $marker ] && [ $reference[8] == $marker ] 
+    # || [ $reference[2] == $marker ] && [ $reference[4] == $marker ] && [ $reference[6] == $marker ]; then
+    #   echo $?
+    # else
+    #   echo $?
+    # fi
 }
 
 ##
