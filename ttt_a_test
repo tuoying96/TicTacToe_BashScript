@@ -38,6 +38,11 @@ test_X_win() {
 	sol=( X _ _ _ _ _ _ _ O )
 	assertArrayEqual tttBoard sol
 
+	# X first move to position 9
+	markBoard X 9 tttBoard
+	sol=( X _ _ _ _ _ _ _ O )
+	assertArrayEqual tttBoard sol
+
     ### Additional tests here  for X winning game
 
     # X has won

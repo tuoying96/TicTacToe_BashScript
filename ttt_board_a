@@ -32,10 +32,17 @@ markBoard() {
     marker=$1
     bpos=$2
     reference=$3
-    if [ ${reference[$bpos]} != "_" ]
+    idx=$(( $bpos - 1 ))
+    # if $marker != "X" || $marker != "O" echo "invalid marker"
+    # if $bpos > 9 || < 1 echo "invalid position"
+    if [ {$reference[$idx]} != "_" ];
     then
+        tttBoard[$idx]=$marker
+        # $reference[$idx]=$marker 为什么不可以
+        printf "board position marked"
         echo 0
-    else
+    else  
+        printf "cannot mark"
         echo 1
     fi
 
