@@ -34,7 +34,7 @@ markBoard() {
     bpos=$2
     declare -n reference=$3
     idx=$(( $bpos - 1 ))
-    # if $marker != "X" || $marker != "O" echo "invalid marker"
+
     # if $bpos > 9 || < 1 echo "invalid position"
     if ((bpos < 1 || bpos > 9)); then
       echo ${board}
@@ -43,11 +43,11 @@ markBoard() {
 
     if [ ${reference[$idx]} == "_" ]; then
       reference[$idx]=$marker
-      echo $reference #为什么这行不返回也可以？是因为在前面declare了吗？
+      #echo $reference #为什么这行不返回也可以？是因为在前面declare了吗？
       return 0
       
     else  
-      echo $reference
+      #echo $reference
       return 1
     fi
 

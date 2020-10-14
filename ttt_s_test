@@ -148,7 +148,7 @@ test_draw() {
 	assertStringEqual "$tttBoard2" "XX__X_OOO"
     ### remove this line
     #fail
-	displayBoard tttBoard2
+	displayBoard $tttBoard2
 }
 
 # run unit tests for X win, O win, and draw
