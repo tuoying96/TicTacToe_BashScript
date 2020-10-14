@@ -16,8 +16,14 @@
 #
 initBoard() {
     ### your code here
-    declare -n board=$1
-    board=( _ _ _ _ _ _ _ _ _ )
+    declare -r -i boardsize=9
+    declare -r posStr=_
+    local board=$1
+    for i in $(seq 0 $(expr $boardsize - 1)); do 
+        eval "$board[$i]=$posStr"
+    done
+    # declare -n board=$1
+    # board=( _ _ _ _ _ _ _ _ _ )
 }
 
 ##
@@ -37,7 +43,7 @@ markBoard() {
 
     # if $bpos > 9 || < 1 echo "invalid position"
     if ((bpos < 1 || bpos > 9)); then
-      echo ${board}
+      #echo ${board}
       return 1
     fi
 
@@ -105,18 +111,17 @@ hasWon() {
 displayBoard() {
     ### your code here
     declare -n reference=$1
+    declare -r -i boardsize=9
     boundry="-------------"
 
-    if [ ${reference[0]} == "_" ]; then pos0="1"; else pos0="${reference[0]}"; fi
-    if [ ${reference[1]} == "_" ]; then pos1="2"; else pos1="${reference[1]}"; fi
-    if [ ${reference[2]} == "_" ]; then pos2="3"; else pos2="${reference[2]}"; fi
-    if [ ${reference[3]} == "_" ]; then pos3="4"; else pos3="${reference[3]}"; fi
-    if [ ${reference[4]} == "_" ]; then pos4="5"; else pos4="${reference[4]}"; fi
-    if [ ${reference[5]} == "_" ]; then pos5="6"; else pos5="${reference[5]}"; fi
-    if [ ${reference[6]} == "_" ]; then pos6="7"; else pos6="${reference[6]}"; fi
-    if [ ${reference[7]} == "_" ]; then pos7="8"; else pos7="${reference[7]}"; fi
-    if [ ${reference[8]} == "_" ]; then pos8="9"; else pos8="${reference[8]}"; fi
-    
+    for i in $(seq 0 $(( $boardsize - 1 ))); do     
+        if [[ "${reference[$i]}" == "O" || "${reference[$i]}" == "X" ]]; then
+            local "pos"$i=${reference[$i]}
+        else
+            local "pos"$i=$(( i+1 ))
+        fi
+    done
+        
     printf "%s\n" $boundry
     echo "| $pos0 | $pos1 | $pos2"
     printf "%s\n" $boundry
