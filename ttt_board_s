@@ -77,16 +77,6 @@ hasWon() {
       local "pos"$i=${board:$i:1} 
     done
 
-    # pos0=${board:0:1}
-    # pos1=${board:1:1}
-    # pos2=${board:2:1}
-    # pos3=${board:3:1}
-    # pos4=${board:4:1}
-    # pos5=${board:5:1}
-    # pos6=${board:6:1}
-    # pos7=${board:7:1}
-    # pos8=${board:8:1}
-
     if [ "${pos0}" == ${marker} ] && [ "${pos1}" == ${marker} ] && [ "${pos2}" == ${marker} ]; then 
       echo success
       return 0  
@@ -136,16 +126,6 @@ displayBoard() {
             local "pos"$i=$(( i+1 ))
         fi
     done
-
-    # if [ "${board:0:1}" == "_" ]; then pos0="1"; else pos0="${board:0:1}"; fi
-    # if [ "${board:1:1}" == "_" ]; then pos1="2"; else pos1="${board:1:1}"; fi
-    # if [ "${board:2:1}" == "_" ]; then pos2="3"; else pos2="${board:2:1}"; fi
-    # if [ "${board:3:1}" == "_" ]; then pos3="4"; else pos3="${board:3:1}"; fi
-    # if [ "${board:4:1}" == "_" ]; then pos4="5"; else pos4="${board:4:1}"; fi
-    # if [ "${board:5:1}" == "_" ]; then pos5="6"; else pos5="${board:5:1}"; fi
-    # if [ "${board:6:1}" == "_" ]; then pos6="7"; else pos6="${board:6:1}"; fi
-    # if [ "${board:7:1}" == "_" ]; then pos7="8"; else pos7="${board:7:1}"; fi
-    # if [ "${board:8:1}" == "_" ]; then pos8="9"; else pos8="${board:8:1}"; fi
     
     printf "%s\n" $boundry
     echo "| $pos0 | $pos1 | $pos2"
@@ -154,6 +134,8 @@ displayBoard() {
     printf "%s\n" $boundry
     echo "| $pos6 | $pos7 | $pos8"
     printf "%s\n" $boundry
+
+    ####### tried color the board, but failed...
     
     # rv_magenta=$(tput rev)$(tput setaf 5)
     # #rv_magenta=$(tput setaf 5)
