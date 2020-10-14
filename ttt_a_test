@@ -38,13 +38,14 @@ test_X_win() {
 	sol=( X _ _ _ _ _ _ _ O )
 	assertArrayEqual tttBoard sol
 
+    ### Additional tests here  for X winning game
+
 	# X second move to position 9
 	markBoard X 9 tttBoard 
 	#should be failed, beacuse this positionn has already be O
 	sol=( X _ _ _ _ _ _ _ O )
 	assertArrayEqual tttBoard sol
-
-    ### Additional tests here  for X winning game
+	
 	# X second move to position 2
 	markBoard X 2 tttBoard
 	sol=( X X _ _ _ _ _ _ O )

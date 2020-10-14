@@ -16,6 +16,10 @@
 #
 initBoard() {
     ### your code here
+    board="_________"
+    echo $board
+    return 0
+    
 }
 
 ##
@@ -30,6 +34,31 @@ initBoard() {
 #
 markBoard() {
     ### your code here
+    marker=$1
+    boardPos=$2
+    #declare -n 
+    board=$3
+    idx=$(( $boardPos - 1 ))
+
+    if ((boardPos < 1 || boardPos > 9)); then
+      echo ${board}
+      return 1
+    fi
+
+    # if [ "${marker}" != "X" ] || [ "${marker}" != "O" ]; then
+    #   echo ${board}
+    #   return 1
+    # fi
+
+    if [ "${board:idx:1}" = "_" ]; then
+     echo ${board:0:idx}${marker}${board:idx+1}
+     return 0
+    else
+     echo $board
+     return 1
+    fi
+
+    #echo $resBoard
 }
 
 ##
@@ -43,6 +72,47 @@ markBoard() {
 #
 hasWon() {
     ### your code here
+    marker=$1
+    board=$2
+
+    pos0=${board:0:1}
+    pos1=${board:1:1}
+    pos2=${board:2:1}
+    pos3=${board:3:1}
+    pos4=${board:4:1}
+    pos5=${board:5:1}
+    pos6=${board:6:1}
+    pos7=${board:7:1}
+    pos8=${board:8:1}
+
+    if [ "${pos0}" == ${marker} ] && [ "${pos1}" == ${marker} ] && [ "${pos2}" == ${marker} ]; then 
+      echo success
+      return 0  
+    elif [ "$pos3" == $marker ] && [ "$pos4" == $marker ] && [ "$pos5" == $marker ]; then 
+      echo success
+      return 0   
+    elif [ "$pos6" == $marker ] && [ "$pos7" == $marker ] && [ "$pos8" == $marker ]; then 
+      echo success
+      return 0  
+    elif [ "$pos0" == $marker ] && [ "$pos3" == $marker ] && [ "$pos6" == $marker ]; then 
+      echo success
+      return 0  
+    elif [ "$pos1" == $marker ] && [ "$pos4" == $marker ] && [ "$pos7" == $marker ]; then 
+      echo success
+      return 0  
+    elif [ "$pos2" == $marker ] && [ "$pos5" == $marker ] && [ "$pos8" == $marker ]; then 
+      echo success
+      return 0  
+    elif [ "$pos0" == $marker ] && [ "$pos4" == $marker ] && [ "$pos8" == $marker ]; then 
+      echo success
+      return 0  
+    elif [ "$pos2" == $marker ] && [ "$pos4" == $marker ] && [ "$pos6" == $marker ]; then 
+      #echo success
+      return 0  
+    else
+      #echo fail
+      return 1 
+    fi
 }
 
 ##
@@ -52,4 +122,72 @@ hasWon() {
 #
 displayBoard() {
     ### your code here
+    #declare -n 
+    board=$1
+    boundry="-------------"
+    if [ "${board:0:1}" == "_" ]; then pos0="1"; else pos0="${board:0:1}"; fi
+    if [ "${board:1:1}" == "_" ]; then pos1="2"; else pos1="${board:1:1}"; fi
+    if [ "${board:2:1}" == "_" ]; then pos2="3"; else pos2="${board:2:1}"; fi
+    if [ "${board:3:1}" == "_" ]; then pos3="4"; else pos3="${board:3:1}"; fi
+    if [ "${board:4:1}" == "_" ]; then pos4="5"; else pos4="${board:4:1}"; fi
+    if [ "${board:5:1}" == "_" ]; then pos5="6"; else pos5="${board:5:1}"; fi
+    if [ "${board:6:1}" == "_" ]; then pos6="7"; else pos6="${board:6:1}"; fi
+    if [ "${board:7:1}" == "_" ]; then pos7="8"; else pos7="${board:7:1}"; fi
+    if [ "${board:8:1}" == "_" ]; then pos8="9"; else pos8="${board:8:1}"; fi
+    
+    printf "%s\n" $boundry
+    echo "| $pos0 | $pos1 | $pos2"
+    printf "%s\n" $boundry
+    echo "| $pos3 | $pos4 | $pos5"
+    printf "%s\n" $boundry
+    echo "| $pos6 | $pos7 | $pos8"
+    printf "%s\n" $boundry
+    
+    # rv_magenta=$(tput rev)$(tput setaf 5)
+    # #rv_magenta=$(tput setaf 5)
+    # rv_cyan=$(tput rev)$(tput setaf 6)
+    # reset_video=$(tput srg0)
+    
+    # pos0="${board:0:1}"
+    # pos1="${board:1:1}" 
+    # pos2="${board:2:1}"
+    # pos3="${board:3:1}"
+    # pos4="${board:4:1}"
+    # pos5="${board:5:1}"
+    # pos6="${board:6:1}"
+    # pos7="${board:7:1}"
+    # pos8="${board:8:1}"
+
+
+    # printf "%s\n" $boundry
+    # if [ $pos0 == "_" ]; then 
+    #   pos0="1"
+    #   printf "| $pos0 | " 
+    # elif [ $pos0 == "X" ]; then
+    #   pos0="X"
+    #   printf "| %b "${pos0}" %b |", "$rv_magenta" "$reset_video"
+    #   # printf "| %b "${pos0}" %b|", "$rv_magenta" "$reset_video"
+    # else
+    #   printf "| %b $pos0 %b|", "$rv_cyan" "$reset_video"
+    # fi 
+
+    # if [ $pos1 == "_" ]; then 
+    #   pos1="2"
+    #   printf "$pos1 | " 
+    # elif [ $pos1 == "X" ]; then
+    #   printf "%b $pos1 %b |", "$rv_magenta" "$reset_video"
+    # else
+    #   printf "%b $pos1 %b |", "$rv_cyan" "$reset_video"
+    # fi 
+
+    # if [ $pos2 == "_" ]; then 
+    #   pos2="3"
+    #   printf "$pos2 | " 
+    # elif [ $pos2 == "X" ]; then
+    #   printf "%b $pos2 %b |", "$rv_magenta" "$reset_video"
+    # else
+    #   printf "%b $pos2 %b | \n", "$rv_cyan" "$reset_video"
+    # fi
+
+    # printf "%s\n" $boundry 
 }
